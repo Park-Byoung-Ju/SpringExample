@@ -27,4 +27,10 @@ public class UserService {
 		
 		return user;
 	}
+	
+	public int addUserByObject(User user) {
+		int result = userRepository.insertUserByObject(user);
+		
+		return result;
+	}
 }

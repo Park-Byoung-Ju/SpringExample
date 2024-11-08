@@ -35,4 +35,23 @@
 		ORDER BY `id` DESC
 		LIMIT 1;
 	</select>
+	
+	<insert id="insertUserByObject" parameterType="com.totra.spring.ex.mvc.domain.User"
+	useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO
+			`new_user`
+		(
+			`name`
+			,`yyyymmdd`
+			,`email`
+			,`introduce`
+		)
+		VALUE
+		(
+			#{name}
+			,#{yyyymmdd}
+			,#{email}
+			,#{introduce}
+		);
+	</insert>
 </mapper>

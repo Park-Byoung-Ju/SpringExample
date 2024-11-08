@@ -16,4 +16,6 @@ public interface UserRepository {
 	
 	
 	public User selectLastUser();
+	
+	public int insertUserByObject(User user);
 }

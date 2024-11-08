@@ -21,16 +21,31 @@ public class UserController {
 	// 사용자 정보를 request 파라미터로 전달 받고, 저장하는 기능
 	/* @RequestMapping("/mvc/user/create", method=RequestMethod.POST) */
 	@PostMapping("/create")
-	@ResponseBody
+//	@ResponseBody
 	public String createUser(
 			@RequestParam("name") String name
 			,@RequestParam("birthday") String birthday
 			,@RequestParam("email") String email
-			,@RequestParam("introduce") String introduce) {
+			,@RequestParam("introduce") String introduce
+			,Model model) {
 		
-		int count = userService.addUser(name, birthday, email, introduce);
-		return "실행 완료 : " + count;
+//		int count = userService.addUser(name, birthday, email, introduce);
 		
+		User user = new User();
+		user.setName(name);
+		user.setYyyymmdd(birthday);
+		user.setEmail(email);
+		user.setIntroduce(introduce);
+		
+		int result = userService.addUserByObject(user);
+		
+		if(result == 1) {
+			model.addAttribute("result",user);
+			
+			return "redirect:/mvc/user/info";
+		}
+		
+		return "mvc/userinput";
 	}
 	
 	@GetMapping("/info")
