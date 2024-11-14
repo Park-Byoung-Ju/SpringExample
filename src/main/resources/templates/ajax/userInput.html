@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+		
+		<div> <label>이름 : </label> <input id="nameInput" type="text"></div>
+		<div> <label>생년월일 : </label> <input id="birthdayInput" type="text"></div>
+		<div> <label>이메일 : </label> <input id="emailInput" type="text"></div>
+		<div> <label>자기소개 : </label></div>
+		<div> <textarea id="introduceInput" cols="50" rows="7"></textarea></div>
+		<button id="btn" type="button">추가</button>
+
+		<span id="result"></span>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script>
+	$(document).ready(function(){
+		$("#btn").on("click", function(){
+			let name = $("#nameInput").val();
+			let birthday = $("#birthdayInput").val();
+			let email = $("#emailInput").val();
+			let introduce = $("#introduceInput").val();
+			
+			if(name.length == 0){
+				alert("이름을 입력하세요");
+				return false;
+			}
+			
+			if(birthday.length == 0){
+				alert("생년월일을 입력해주세요");
+				return false;
+			}
+			
+			if(email.length == 0){
+				alert("email을 입력해주세요");
+				return false;
+			}
+			
+			if(introduce.length == 0){
+				alert("자기소개를 입력해주세요");
+				return false;
+			}
+			
+			$.ajax({
+				type:"post"
+				,url:"/ajax/user/create"
+				,data:{"name":name
+					,"birthday":birthday
+					,"email":email
+					,"introduce":introduce}
+				,success:function(response){
+					$("#result").text(response.result);
+				}
+			});
+		});
+	});
+</script>
+</body>
+</html>
