@@ -37,8 +37,15 @@
 	
 	<h3>4. 조건문</h3>
 	<th:block th:with="age = 18">
-		<h4 th:if="true">true 일떄만 태그가 포함(랜더링) 된다.</h4>
-		<h4 th:if="${age < 20}">미성년자입니다</h4>
+		<h4 th:if="false">true일때만 태그가 포함(랜더링) 된다</h4>
+		<h4 th:if="${age < 20}">미성년자 입니다.</h4>
+		<h4 th:if="${age >= 20}">나이가 20살 이상이다</h4>
+		<h4 th:if="${age < 30}">30살 미만이다.</h4>
+		<h4 th:if="${age == 23}">나이가 23살이다</h4>
+		
+		<!-- unless - 부정 -->
+		<h4 th:if="${age >= 20}">성인 입니다</h4>
+		<h4 th:unless="${age >= 20}">미성년 입니다.</h4>
 	</th:block>
 	
 	<h3>4. switch 문</h3>

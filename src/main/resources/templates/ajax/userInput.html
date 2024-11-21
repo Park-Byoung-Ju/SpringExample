@@ -12,6 +12,7 @@
 		<div> <label>자기소개 : </label></div>
 		<div> <textarea id="introduceInput" cols="50" rows="7"></textarea></div>
 		<button id="btn" type="button">추가</button>
+		
 
 		<span id="result"></span>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
@@ -52,7 +53,17 @@
 					,"introduce":introduce}
 				,success:function(response){
 					$("#result").text(response.result);
+					
+					if(response.result == "success"){
+						alert("저장 성공");
+					}else{
+						alert("저장 실패");
+					}
 				}
+				,error:function(response){
+					alert("저장 에러");
+				}
+				
 			});
 		});
 	});
